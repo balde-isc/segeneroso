@@ -8,30 +8,49 @@ require_once 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // Obtener y limpiar datos
-    $nombre = cleanInput($_POST['nombre'] ?? '');
-    $email = cleanInput($_POST['email'] ?? '');
-    $interes = cleanInput($_POST['interes'] ?? '');
-    $acepta_terminos = isset($_POST['acepta_terminos']) ? 1 : 0;
-
-    // Validaciones
-    if (empty($nombre) || empty($email)) {
-        echo json_encode(['success' => false, 'message' => 'Nombre y email son obligatorios']);
-        exit;
-    }
-
-    if (!validateEmail($email)) {
-        echo json_encode(['success' => false, 'message' => 'Email no válido']);
-        exit;
-    }
-
-    if (!$acepta_terminos) {
-        echo json_encode(['success' => false, 'message' => 'Debes aceptar los términos y condiciones']);
-        exit;
-    }
-
     try {
+        // Obtener y limpiar datos
+        $nombre = cleanInput($_POST['nombre'] ?? '');
+        $email = cleanInput($_POST['email'] ?? '');
+        $interes = cleanInput($_POST['interes'] ?? '');
+        $acepta_terminos = isset($_POST['acepta_terminos']) ? 1 : 0;
+
+        // Validaciones
+        if (empty($nombre) || empty($email)) {
+            echo json_encode(['success' => false, 'message' => 'Nombre y email son obligatorios']);
+            exit;
+        }
+
+        if (!validateEmail($email)) {
+            echo json_encode(['success' => false, 'message' => 'Email no válido']);
+            exit;
+        }
+
+        if (!$acepta_terminos) {
+            echo json_encode(['success' => false, 'message' => 'Debes aceptar los términos y condiciones']);
+            exit;
+        }
+
+        // Intentar conexión
         $conn = getConnection();
+
+        // Verificar si las tablas existen
+        $table_check = $conn->query("SHOW TABLES LIKE 'suscriptores'");
+        if ($table_check->num_rows == 0) {
+            // Crear tabla si no existe
+            $create_table = "CREATE TABLE suscriptores (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                nombre VARCHAR(100) NOT NULL,
+                email VARCHAR(100) NOT NULL,
+                interes VARCHAR(50),
+                fecha_suscripcion DATETIME NOT NULL,
+                UNIQUE KEY unique_email (email)
+            )";
+
+            if (!$conn->query($create_table)) {
+                throw new Exception("Error creando tabla: " . $conn->error);
+            }
+        }
 
         // Verificar si ya existe el email
         $check_stmt = $conn->prepare("SELECT id FROM suscriptores WHERE email = ?");
@@ -51,14 +70,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt->execute()) {
             echo json_encode(['success' => true, 'message' => '¡Suscripción exitosa! Recibirás nuestro newsletter.']);
         } else {
-            echo json_encode(['success' => false, 'message' => 'Error al procesar la suscripción']);
+            throw new Exception("Error ejecutando consulta: " . $stmt->error);
         }
 
         $stmt->close();
         $check_stmt->close();
         $conn->close();
     } catch (Exception $e) {
-        echo json_encode(['success' => false, 'message' => 'Error del servidor']);
+        // Mostrar el error real (solo para debugging)
+        echo json_encode(['success' => false, 'message' => 'Error: ' . $e->getMessage()]);
     }
 } else {
     echo json_encode(['success' => false, 'message' => 'Método no permitido']);
