@@ -5,9 +5,9 @@ ini_set('display_errors', 1);
 
 // Configuración de base de datos
 $servername = "localhost";
-$username = "segeneroso";
+$username = "u108442637_segeneroso";
 $password = "UR*hDYK1y$";
-$dbname = "segeneroso";
+$dbname = "u108442637_segeneroso";
 
 // Crear conexión
 function getConnection()
