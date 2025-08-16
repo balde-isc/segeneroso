@@ -57,13 +57,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Preparar consulta
-        $stmt = $conn->prepare("INSERT INTO donadores (nombre, email, telefono, categoria, fecha_envio, comentarios) VALUES (?, ?, ?, ?, NOW(), ?)");
+        $stmt = $conn->prepare("INSERT INTO donadores (nombre, email, telefono, categoria, comentarios, fecha_envio) VALUES (?, ?, ?, ?, ?, NOW())");
 
         if (!$stmt) {
             throw new Exception("Error preparando consulta: " . $conn->error);
         }
 
-        $stmt->bind_param("ssss", $nombre, $email, $telefono, $categoria);
+        $stmt->bind_param("ssss", $nombre, $email, $telefono, $categoria, $comentarios);
 
         if ($stmt->execute()) {
             echo json_encode(['success' => true, 'message' => '¡Mensaje enviado correctamente! Te contactaremos pronto.']);
