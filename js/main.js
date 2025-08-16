@@ -39,13 +39,10 @@ $(document).ready(function () {
                 data: formData,
                 dataType: 'json',
                 success: function (response) {
-                    console.log(response)
-                                        alert("OK")
-
                     if (response.success) {
                         Swal.fire({
-                            title: "Good job!",
-                            text: "You clicked the button!",
+                            title: "¡Solicitud enviada correctamente!",
+                            text: "Hemos recibido tu solicitud de apoyo. Nuestro equipo la revisará y te contactaremos para conectarte lo más pronto posible.",
                             icon: "success"
                         });
                         resultDiv.html(`
@@ -66,16 +63,14 @@ $(document).ready(function () {
                     }
                 },
                 error: function () {
-                    resultDiv.html(`
-                        <div class="alert alert-danger">
-                            <i class="fas fa-times-circle"></i> 
-                            Error de conexión. Por favor, intenta nuevamente.
-                        </div>
-                    `);
+                    Swal.fire({
+                        title: "No pudimos enviar tu solicitud",
+                        text: "Lo sentimos, experimentamos dificultades técnicas. Tu información es importante para nosotros, por favor intenta nuevamente o contáctanos directamente.",
+                        icon: "error"
+                    });
                 },
                 complete: function (e) {
                     e.preventDefault();
-                    console.log("SOLO")
                     // Ocultar loading
                     submitBtn.find('.submit-text').show();
                     submitBtn.find('.loading').hide();
