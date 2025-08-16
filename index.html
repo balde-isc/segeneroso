@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,134 +8,243 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        .hero-section {
-            padding: 80px 0;
-            color: white;
-            text-align: center;
-        }
-        
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .hero-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-        }
-        
-        .form-container {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .form-container:hover {
-            transform: translateY(-5px);
-        }
-        
-        .form-title {
+            background: #fff;
             color: #333;
-            font-weight: bold;
-            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* HEADER */
+        header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 0.5rem;
+            padding: 15px 40px;
+            background: #fff;
+            border-bottom: 1px solid #eee;
         }
-        
-        .btn-submit {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            color: white;
+
+        header .logo {
             font-weight: bold;
-            transition: all 0.3s ease;
+            font-size: 18px;
         }
-        
-        .btn-submit:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            color: white;
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
         }
-        
-        .loading {
-            display: none;
+
+        nav ul li a {
+            color: #444;
+            font-weight: 500;
         }
-        
-        .alert {
-            border-radius: 10px;
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid #444;
+            cursor: pointer;
+        }
+
+        .btn-dark {
+            background: #222;
+            color: #fff;
+        }
+
+        .btn-light {
+            background: #fff;
+            color: #222;
+        }
+
+        .btn-green {
+            background: #8BC34A;
+            color: #fff;
             border: none;
-            padding: 1rem;
-            margin-top: 1rem;
         }
-        
-        .form-control, .form-select {
+
+        /* HERO */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 60px 80px;
+            gap: 40px;
+        }
+
+        .hero-text h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .hero-text .btn {
+            margin-right: 10px;
+        }
+
+        /* CARDS */
+        .section {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            width: 280px;
+            background: #fff;
             border-radius: 10px;
-            border: 1px solid #ddd;
-            padding: 12px 15px;
-            transition: all 0.3s ease;
-        }
-        
-        .form-control:focus, .form-select:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
-        }
-        
-        .floating-icons {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            z-index: -1;
+            text-align: left;
         }
-        
-        .floating-icon {
-            position: absolute;
-            color: rgba(255,255,255,0.1);
-            animation: float 6s ease-in-out infinite;
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
         }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+
+        .card-content {
+            padding: 15px;
         }
-        
-        .icon-1 { top: 10%; left: 10%; font-size: 2rem; animation-delay: 0s; }
-        .icon-2 { top: 20%; right: 10%; font-size: 1.5rem; animation-delay: 1s; }
-        .icon-3 { top: 60%; left: 5%; font-size: 2.5rem; animation-delay: 2s; }
-        .icon-4 { bottom: 10%; right: 15%; font-size: 1.8rem; animation-delay: 3s; }
+
+        .progress-bar {
+            height: 6px;
+            background: #eee;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+
+        .progress {
+            height: 6px;
+            background: #4CAF50;
+            border-radius: 4px;
+        }
+
+        .btn-card {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            background: #222;
+            color: #fff;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #fafafa;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-links {
+            margin: 15px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social {
+            margin-top: 15px;
+        }
+
+        .social a {
+            margin: 0 10px;
+            font-size: 18px;
+            color: #555;
+        }
     </style>
 </head>
-<body>
-    <div class="floating-icons">
-        <i class="fas fa-rocket floating-icon icon-1"></i>
-        <i class="fas fa-star floating-icon icon-2"></i>
-        <i class="fas fa-heart floating-icon icon-3"></i>
-        <i class="fas fa-lightbulb floating-icon icon-4"></i>
-    </div>
 
-    <!-- Hero Section -->
-    <div class="hero-section">
-        <div class="container">
-            <h1 class="hero-title">¡Bienvenido a Nuestro Servicio!</h1>
-            <p class="hero-subtitle">Completa nuestros formularios y únete a nuestra comunidad</p>
+<body>
+
+    <header>
+        <div class="logo">SEGENEROSO</div>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Quiero donar</a></li>
+                <li><a href="#">Solicitar un apoyo</a></li>
+                <li><a href="#">Misión</a></li>
+                <li><a href="#">Quiénes somos</a></li>
+                <li><a href="#">Dudas</a></li>
+            </ul>
+        </nav>
+        <div class="actions">
+            <button class="btn btn-light" onclick="login()">Log in</button>
+            <button class="btn btn-green" onclick="donate()">Donate</button>
         </div>
-    </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Texto para generar conciencia</h1>
+            <button class="btn btn-dark" onclick="solicitarApoyo()">Solicitar apoyo</button>
+            <button class="btn btn-light" onclick="donarApoyar()">Donar y apoyar</button>
+        </div>
+        <div class="hero-img">
+            <img src="https://via.placeholder.com/400x250" alt="Imagen solidaria" style="border-radius:20px;">
+        </div>
+    </section>
+
+    <!-- CARDS -->
+    <section class="section">
+        <h2>Como podemos sumar</h2>
+        <div class="cards">
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150" alt="Donar">
+                <div class="card-content">
+                    <span>Donar</span>
+                    <h3>Lorem ipsum</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 70%;"></div>
+                    </div>
+                    <p>Donaciones: 526</p>
+                    <a href="#" class="btn-card" onclick="donar()">SOLICITAR 💚</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://via.placeholder.com/300x150" alt="Apoyar">
+                <div class="card-content">
+                    <span>Apoyar</span>
+                    <h3>Lorem ipsum</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 40%;"></div>
+                    </div>
+                    <p>Solicitudes: 235</p>
+                    <a href="#" class="btn-card" onclick="apoyar()">SOLICITAR 💚</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- Formularios -->
     <div class="container">
@@ -202,7 +312,8 @@
                             </select>
                         </div>
                         <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="acepta_terminos" name="acepta_terminos" required>
+                            <input type="checkbox" class="form-check-input" id="acepta_terminos" name="acepta_terminos"
+                                required>
                             <label class="form-check-label" for="acepta_terminos">
                                 Acepto los términos y condiciones *
                             </label>
@@ -219,45 +330,64 @@
             </div>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="text-center py-4 mt-5">
-        <div class="container">
-            <p class="text-white opacity-75">&copy; 2025 Mi Landing Page. Todos los derechos reservados.</p>
+    <!-- FOOTER -->
+    <footer>
+        <div class="logo">SEGENEROSO</div>
+        <div class="footer-links">
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Join Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Help</a>
+            <a href="#">Privacy</a>
         </div>
+        <div class="social">
+            <a href="#">🐦</a>
+            <a href="#">📘</a>
+            <a href="#">▶️</a>
+            <a href="#">📸</a>
+        </div>
+        <p>© 2025 Shadient.co. All rights reserved.</p>
     </footer>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
-        $(document).ready(function() {
+        function login() { alert("Redirigiendo al login..."); }
+        function donate() { alert("Gracias por tu donación ❤️"); }
+        function solicitarApoyo() { alert("Formulario de solicitud de apoyo..."); }
+        function donarApoyar() { alert("Opción de donar y apoyar seleccionada"); }
+        function donar() { alert("Haz donado con éxito 💚"); }
+        function apoyar() { alert("Haz apoyado con éxito 💚"); }
+        $(document).ready(function () {
             // Función para enviar formularios
             function submitForm(formId, apiEndpoint) {
                 const form = $('#' + formId);
                 const resultDiv = $('#result' + formId.slice(-1));
                 const submitBtn = form.find('button[type="submit"]');
-                
-                form.on('submit', function(e) {
+
+                form.on('submit', function (e) {
                     e.preventDefault();
-                    
+
                     // Mostrar loading
                     submitBtn.find('.submit-text').hide();
                     submitBtn.find('.loading').show();
                     submitBtn.prop('disabled', true);
-                    
+
                     // Limpiar resultados anteriores
                     resultDiv.html('');
-                    
+
                     // Obtener datos del formulario
                     const formData = form.serialize();
-                    
+
                     // Enviar con AJAX
                     $.ajax({
                         url: 'api/' + apiEndpoint,
                         type: 'POST',
                         data: formData,
                         dataType: 'json',
-                        success: function(response) {
+                        success: function (response) {
                             if (response.success) {
                                 resultDiv.html(`
                                     <div class="alert alert-success">
@@ -275,7 +405,7 @@
                                 `);
                             }
                         },
-                        error: function() {
+                        error: function () {
                             resultDiv.html(`
                                 <div class="alert alert-danger">
                                     <i class="fas fa-times-circle"></i> 
@@ -283,7 +413,7 @@
                                 </div>
                             `);
                         },
-                        complete: function() {
+                        complete: function () {
                             // Ocultar loading
                             submitBtn.find('.submit-text').show();
                             submitBtn.find('.loading').hide();
@@ -292,11 +422,12 @@
                     });
                 });
             }
-            
+
             // Configurar formularios
             submitForm('form1', 'form1.php');
             submitForm('form2', 'form2.php');
         });
     </script>
 </body>
+
 </html>
