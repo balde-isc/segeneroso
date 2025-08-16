@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $acepta_terminos = cleanInput($_POST['acepta_terminos'] ?? '');
 
         // Validaciones
-        if (empty($nombre) || empty($email) || empty($mensaje)) {
+        if (empty($nombre) || empty($email) || empty($telefono)) {
             echo json_encode(['success' => false, 'message' => 'Todos los campos obligatorios deben estar completos']);
             exit;
         }
