@@ -1,8 +1,8 @@
 function login() { window.location('') }
-function donate() {  window.location.href = '/donar.html' }
+function donate() { window.location.href = '/donar.html' }
 function solicitarApoyo() { window.location.href = '/apoyar.html' }
 function donarApoyar() { window.location.href = '/donar.html' }
-function donar() { window.location.href = '/donar.html'}
+function donar() { window.location.href = '/donar.html' }
 function apoyar() { window.location.href = '/apoyar.html' }
 $(document).ready(function () {
     // Función para enviar formularios
@@ -12,7 +12,7 @@ $(document).ready(function () {
         const submitBtn = form.find('button[type="submit"]');
 
         form.on('submit', function (e) {
-          e.preventDefault();
+            e.preventDefault();
 
             // Validación Bootstrap 5
             if (!this.checkValidity()) {
@@ -39,7 +39,13 @@ $(document).ready(function () {
                 data: formData,
                 dataType: 'json',
                 success: function (response) {
+                    console.log(response)
                     if (response.success) {
+                        Swal.fire({
+                            title: "Good job!",
+                            text: "You clicked the button!",
+                            icon: "success"
+                        });
                         resultDiv.html(`
                             <div class="alert alert-success">
                                 <i class="fas fa-check-circle"></i> 
@@ -65,7 +71,9 @@ $(document).ready(function () {
                         </div>
                     `);
                 },
-                complete: function () {
+                complete: function (e) {
+                    e.preventDefault();
+                    console.log("SOLO")
                     // Ocultar loading
                     submitBtn.find('.submit-text').show();
                     submitBtn.find('.loading').hide();
@@ -77,7 +85,7 @@ $(document).ready(function () {
 
     submitForm('form1', 'form1.php'); //DONAR
     submitForm('form2', 'form2.php'); //APOYO
-        $('#telefono3').on('input', function() {
+    $('#telefono3').on('input', function () {
         this.value = this.value.replace(/[^0-9]/g, '');
         if (this.value.length > 10) {
             this.value = this.value.slice(0, 10);

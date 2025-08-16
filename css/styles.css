@@ -245,23 +245,29 @@
       .hero .description {
           font-size: 1rem;
       }
-      .subtitle{
-        text-align: center;
+
+      .subtitle {
+          text-align: center;
       }
+
       .description {
-        text-align: center
+          text-align: center
       }
-      .title{
-        text-align: center;
+
+      .title {
+          text-align: center;
       }
-      .actions-cover{
-        justify-content: center !important;
+
+      .actions-cover {
+          justify-content: center !important;
       }
-      .hero::before{
-        z-index: -1;
+
+      .hero::before {
+          z-index: -1;
       }
+
       .circle-1 {
-        display: none;
+          display: none;
       }
   }
 
@@ -293,17 +299,19 @@
       height: 150px;
       object-fit: cover;
   }
-  
-  .card-tittle{
-    color: #414141;
+
+  .card-tittle {
+      color: #414141;
   }
 
   .card-content {
       padding: 15px;
   }
+
   .card-text {
-    color: #546e7a;
+      color: #546e7a;
   }
+
   .progress-bar {
       height: 6px;
       background: #eee;
@@ -353,42 +361,60 @@
       color: #555;
   }
 
-  .form-section{
-    padding-top: 100px;
+  .form-section {
+      padding-top: 100px;
   }
 
-  .btn-submit{
-    background-color: #4CAF50;
-    color: #fff;
-    border-radius: 25px;
+  .btn-submit {
+      background-color: #4CAF50;
+      color: #fff;
+      border-radius: 25px;
 
   }
 
-.btn-submit:hover{
-    background-color: #fff;
-    color: #4CAF50;
-    border: 1px solid #4CAF50;
+  .btn-submit:hover {
+      background-color: #fff;
+      color: #4CAF50;
+      border: 1px solid #4CAF50;
   }
 
-  .btn-submit:active{
-    background-color: #fff;
-    color: #409543 !important;
-    border: 1px solid #409543 !important;
+  .btn-submit:active {
+      background-color: #fff;
+      color: #409543 !important;
+      border: 1px solid #409543 !important;
   }
+
   .form-check-input:checked {
-     background-color: #4CAF50;
-    color: #fff;
-  }
-  .form-check-input:checked{
-    border-color:  #409543 !important;
+      background-color: #4CAF50;
+      color: #fff;
   }
 
-.form-check-input:focus {
-    border-color: #409543;
-    outline: 0;
-    box-shadow: 0 0 0 .25rem rgb(13 253 67 / 25%);
-}
+  .form-check-input:checked {
+      border-color: #409543 !important;
+  }
 
-.form-check-label>.text-primary{
-    color: #2C3E52 !important;
-}
+  .form-check-input:focus {
+      border-color: #409543;
+      outline: 0;
+      box-shadow: 0 0 0 .25rem rgb(13 253 67 / 25%);
+  }
+
+  .form-check-label>.text-primary {
+      color: #2C3E52 !important;
+  }
+
+  .fas.text-success.me-2 {
+      color: #4CAF50 !important;
+  }
+
+  .donate-box {
+      background-color: #d4edda;
+      color: #4CAF50;
+      font-weight: bold;
+      font-size: 1.2rem;
+      padding: 15px 25px;
+      border-radius: 8px;
+      display: inline-block;
+      text-align: center;
+      min-width: 120px;
+  }

@@ -7,11 +7,13 @@
     <title>Landing Page</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="./css/sweetalert2.min.css">
+
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 
@@ -55,7 +57,7 @@
         </nav>
     </header>
 
- <!-- Formulario de Solicitud de Apoyo -->
+    <!-- Formulario de Solicitud de Apoyo -->
     <section class="section form-section">
         <div class="container">
             <div class="row justify-content-center">
@@ -99,8 +101,8 @@
                                         <i class="fas fa-phone me-1"></i>
                                         Número telefónico *
                                     </label>
-                                    <input type="tel" class="form-control" id="telefono3" name="telefono" 
-                                           pattern="[0-9]{10}" placeholder="10 dígitos" required>
+                                    <input type="tel" class="form-control" id="telefono3" name="telefono"
+                                        pattern="[0-9]{10}" placeholder="10 dígitos" required>
                                     <div class="invalid-feedback">
                                         Por favor, ingresa un número telefónico válido (10 dígitos).
                                     </div>
@@ -133,10 +135,12 @@
                                     <i class="fas fa-comment-alt me-1"></i>
                                     Descripción detallada de tu solicitud *
                                 </label>
-                                <textarea class="form-control" id="comentarios" name="comentarios" rows="6" 
-                                          placeholder="Cuéntanos con detalle qué tipo de apoyo necesitas, tu situación actual, y cualquier información relevante que nos ayude a entender mejor tu necesidad..." required></textarea>
+                                <textarea class="form-control" id="comentarios" name="comentarios" rows="6"
+                                    placeholder="Cuéntanos con detalle qué tipo de apoyo necesitas, tu situación actual, y cualquier información relevante que nos ayude a entender mejor tu necesidad..."
+                                    required></textarea>
                                 <div class="form-text">
-                                    Mientras más detalles proporciones, mejor podremos ayudarte a conectar con el apoyo adecuado.
+                                    Mientras más detalles proporciones, mejor podremos ayudarte a conectar con el apoyo
+                                    adecuado.
                                 </div>
                                 <div class="invalid-feedback">
                                     Por favor, describe tu solicitud de apoyo.
@@ -146,9 +150,10 @@
                             <!-- Términos y condiciones -->
                             <div class="mb-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="acepta_terminos3" name="acepta_terminos" required>
+                                    <input class="form-check-input" type="checkbox" id="acepta_terminos3"
+                                        name="acepta_terminos" required>
                                     <label class="form-check-label" for="acepta_terminos3">
-                                        Acepto que mi información sea compartida con posibles donantes y acepto los 
+                                        Acepto que mi información sea compartida con posibles donantes y acepto los
                                         <a href="#" class="text-primary">términos y condiciones</a> *
                                     </label>
                                     <div class="invalid-feedback">
@@ -171,7 +176,7 @@
                                 </button>
                             </div>
                         </form>
-                        
+
                         <!-- Resultado -->
                         <div id="result3" class="mt-4"></div>
                     </div>
@@ -194,9 +199,10 @@
         <p>© 2025 SEGENEROSO. All rights reserved.</p>
     </footer>
 
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/sweetalert2.js"></script>
+
     <script src="./js/main.js"></script>
 </body>
 
