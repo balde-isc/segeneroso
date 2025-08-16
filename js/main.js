@@ -39,6 +39,9 @@ $(document).ready(function () {
                 data: formData,
                 dataType: 'json',
                 success: function (response) {
+                    submitBtn.find('.submit-text').show();
+                    submitBtn.find('.loading').hide();
+                    submitBtn.prop('disabled', false);
                     if (response.success) {
                         Swal.fire({
                             title: "¡Solicitud enviada correctamente!",
@@ -63,6 +66,9 @@ $(document).ready(function () {
                     }
                 },
                 error: function () {
+                    submitBtn.find('.submit-text').show();
+                    submitBtn.find('.loading').hide();
+                    submitBtn.prop('disabled', false);
                     Swal.fire({
                         title: "No pudimos enviar tu solicitud",
                         text: "Lo sentimos, experimentamos dificultades técnicas. Tu información es importante para nosotros, por favor intenta nuevamente o contáctanos directamente.",
