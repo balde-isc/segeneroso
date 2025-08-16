@@ -13,7 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nombre = cleanInput($_POST['nombre'] ?? '');
         $email = cleanInput($_POST['email'] ?? '');
         $telefono = cleanInput($_POST['telefono'] ?? '');
-        $mensaje = cleanInput($_POST['mensaje'] ?? '');
+        $categoria = cleanInput($_POST['categoria'] ?? '');
+        $comentarios = cleanInput($_POST['comentarios'] ?? '');
+        $acepta_terminos = cleanInput($_POST['acepta_terminos'] ?? '');
 
         // Validaciones
         if (empty($nombre) || empty($email) || empty($mensaje)) {
@@ -26,19 +28,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
+
+        if (!$acepta_terminos) {
+            echo json_encode(['success' => false, 'message' => 'Debes aceptar los términos y condiciones']);
+            exit;
+        }
+
         // Intentar conexión
         $conn = getConnection();
 
         // Verificar si las tablas existen
-        $table_check = $conn->query("SHOW TABLES LIKE 'contactos'");
+        $table_check = $conn->query("SHOW TABLES LIKE 'donadores'");
         if ($table_check->num_rows == 0) {
             // Crear tabla si no existe
-            $create_table = "CREATE TABLE contactos (
+            $create_table = "CREATE TABLE donadores (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 nombre VARCHAR(100) NOT NULL,
                 email VARCHAR(100) NOT NULL,
                 telefono VARCHAR(20),
-                mensaje TEXT NOT NULL,
+                categoria VARCHAR(100) NOT NULL,
+                comentarios TEXT NOT NULL,
                 fecha_envio DATETIME NOT NULL
             )";
 
@@ -48,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Preparar consulta
-        $stmt = $conn->prepare("INSERT INTO contactos (nombre, email, telefono, mensaje, fecha_envio) VALUES (?, ?, ?, ?, NOW())");
+        $stmt = $conn->prepare("INSERT INTO donadores (nombre, email, telefono, categoria, fecha_envio, comentarios) VALUES (?, ?, ?, ?, NOW(), ?)");
 
         if (!$stmt) {
             throw new Exception("Error preparando consulta: " . $conn->error);

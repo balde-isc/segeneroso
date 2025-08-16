@@ -12,12 +12,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Obtener y limpiar datos
         $nombre = cleanInput($_POST['nombre'] ?? '');
         $email = cleanInput($_POST['email'] ?? '');
-        $interes = cleanInput($_POST['interes'] ?? '');
-        $acepta_terminos = isset($_POST['acepta_terminos']) ? 1 : 0;
+        $telefono = cleanInput($_POST['telefono'] ?? '');
+        $categoria = cleanInput($_POST['categoria'] ?? '');
+        $comentarios = cleanInput($_POST['comentarios'] ?? '');
+        $acepta_terminos = cleanInput($_POST['acepta_terminos'] ?? '');
 
         // Validaciones
-        if (empty($nombre) || empty($email)) {
-            echo json_encode(['success' => false, 'message' => 'Nombre y email son obligatorios']);
+        if (empty($nombre) || empty($email) || empty($mensaje)) {
+            echo json_encode(['success' => false, 'message' => 'Todos los campos obligatorios deben estar completos']);
             exit;
         }
 
@@ -25,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode(['success' => false, 'message' => 'Email no válido']);
             exit;
         }
+
 
         if (!$acepta_terminos) {
             echo json_encode(['success' => false, 'message' => 'Debes aceptar los términos y condiciones']);
@@ -35,16 +38,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conn = getConnection();
 
         // Verificar si las tablas existen
-        $table_check = $conn->query("SHOW TABLES LIKE 'suscriptores'");
+        $table_check = $conn->query("SHOW TABLES LIKE 'apoyos'");
         if ($table_check->num_rows == 0) {
             // Crear tabla si no existe
-            $create_table = "CREATE TABLE suscriptores (
+            $create_table = "CREATE TABLE apoyos (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 nombre VARCHAR(100) NOT NULL,
                 email VARCHAR(100) NOT NULL,
-                interes VARCHAR(50),
-                fecha_suscripcion DATETIME NOT NULL,
-                UNIQUE KEY unique_email (email)
+                telefono VARCHAR(20),
+                categoria VARCHAR(100) NOT NULL,
+                comentarios TEXT NOT NULL,
+                fecha_envio DATETIME NOT NULL
             )";
 
             if (!$conn->query($create_table)) {
@@ -52,29 +56,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        // Verificar si ya existe el email
-        $check_stmt = $conn->prepare("SELECT id FROM suscriptores WHERE email = ?");
-        $check_stmt->bind_param("s", $email);
-        $check_stmt->execute();
-        $result = $check_stmt->get_result();
+        // Preparar consulta
+        $stmt = $conn->prepare("INSERT INTO apoyos (nombre, email, telefono, categoria, fecha_envio, comentarios) VALUES (?, ?, ?, ?, NOW(), ?)");
 
-        if ($result->num_rows > 0) {
-            echo json_encode(['success' => false, 'message' => 'Este email ya está suscrito']);
-            exit;
+        if (!$stmt) {
+            throw new Exception("Error preparando consulta: " . $conn->error);
         }
 
-        // Insertar nueva suscripción
-        $stmt = $conn->prepare("INSERT INTO suscriptores (nombre, email, interes, fecha_suscripcion) VALUES (?, ?, ?, NOW())");
-        $stmt->bind_param("sss", $nombre, $email, $interes);
+        $stmt->bind_param("ssss", $nombre, $email, $telefono, $mensaje);
 
         if ($stmt->execute()) {
-            echo json_encode(['success' => true, 'message' => '¡Suscripción exitosa! Recibirás nuestro newsletter.']);
+            echo json_encode(['success' => true, 'message' => '¡Mensaje enviado correctamente! Te contactaremos pronto.']);
         } else {
             throw new Exception("Error ejecutando consulta: " . $stmt->error);
         }
 
         $stmt->close();
-        $check_stmt->close();
         $conn->close();
     } catch (Exception $e) {
         // Mostrar el error real (solo para debugging)

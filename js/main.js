@@ -1,9 +1,9 @@
-function login() { alert("Redirigiendo al login..."); }
-function donate() { alert("Gracias por tu donación ❤️"); }
-function solicitarApoyo() { alert("Formulario de solicitud de apoyo..."); }
-function donarApoyar() { alert("Opción de donar y apoyar seleccionada"); }
-function donar() { alert("Haz donado con éxito 💚"); }
-function apoyar() { alert("Haz apoyado con éxito 💚"); }
+function login() { window.location('') }
+function donate() {  window.location.href = '/donar.html' }
+function solicitarApoyo() { window.location.href = '/apoyar.html' }
+function donarApoyar() { window.location.href = '/donar.html' }
+function donar() { window.location.href = '/donar.html'}
+function apoyar() { window.location.href = '/apoyar.html' }
 $(document).ready(function () {
     // Función para enviar formularios
     function submitForm(formId, apiEndpoint) {
@@ -12,7 +12,14 @@ $(document).ready(function () {
         const submitBtn = form.find('button[type="submit"]');
 
         form.on('submit', function (e) {
-            e.preventDefault();
+          e.preventDefault();
+
+            // Validación Bootstrap 5
+            if (!this.checkValidity()) {
+                e.stopPropagation();
+                form.addClass('was-validated');
+                return;
+            }
 
             // Mostrar loading
             submitBtn.find('.submit-text').hide();
@@ -34,28 +41,29 @@ $(document).ready(function () {
                 success: function (response) {
                     if (response.success) {
                         resultDiv.html(`
-                                    <div class="alert alert-success">
-                                        <i class="fas fa-check-circle"></i> 
-                                        ${response.message || '¡Formulario enviado correctamente!'}
-                                    </div>
-                                `);
+                            <div class="alert alert-success">
+                                <i class="fas fa-check-circle"></i> 
+                                ${response.message || '¡Formulario enviado correctamente!'}
+                            </div>
+                        `);
                         form[0].reset(); // Limpiar formulario
+                        form.removeClass('was-validated'); // Quitar clase de validación
                     } else {
                         resultDiv.html(`
-                                    <div class="alert alert-danger">
-                                        <i class="fas fa-exclamation-triangle"></i> 
-                                        ${response.message || 'Error al procesar el formulario'}
-                                    </div>
-                                `);
+                            <div class="alert alert-danger">
+                                <i class="fas fa-exclamation-triangle"></i> 
+                                ${response.message || 'Error al procesar el formulario'}
+                            </div>
+                        `);
                     }
                 },
                 error: function () {
                     resultDiv.html(`
-                                <div class="alert alert-danger">
-                                    <i class="fas fa-times-circle"></i> 
-                                    Error de conexión. Por favor, intenta nuevamente.
-                                </div>
-                            `);
+                        <div class="alert alert-danger">
+                            <i class="fas fa-times-circle"></i> 
+                            Error de conexión. Por favor, intenta nuevamente.
+                        </div>
+                    `);
                 },
                 complete: function () {
                     // Ocultar loading
@@ -67,7 +75,13 @@ $(document).ready(function () {
         });
     }
 
-    // Configurar formularios
-    submitForm('form1', 'form1.php');
-    submitForm('form2', 'form2.php');
+    submitForm('form1', 'form1.php'); //DONAR
+    submitForm('form2', 'form2.php'); //APOYO
+        $('#telefono3').on('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+        if (this.value.length > 10) {
+            this.value = this.value.slice(0, 10);
+        }
+    });
+
 });

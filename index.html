@@ -7,6 +7,11 @@
     <title>Landing Page</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 
@@ -44,13 +49,13 @@
 
                     <!-- Action buttons -->
                     <div class="navbar-buttons">
-                        <button class="btn btn-donate">Donar</button>
+                        <button class="btn btn-donate" onclick="donar()">Donar</button>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
- <!-- Hero Section -->
+    <!-- Hero Section -->
     <section id="hero" class="hero">
         <!-- Elementos decorativos -->
         <div class="decorative-circle circle-1"></div>
@@ -60,20 +65,22 @@
         <div class="small-dots dot-2"></div>
         <div class="small-dots dot-3"></div>
         <div class="small-dots dot-4"></div>
-        
+
         <div class="container">
             <div class="row gy-4 align-items-center">
-                <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center hero-content" data-aos="fade-up">
-                    <h1>
+                <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center hero-content"
+                    data-aos="fade-up">
+                    <h1 class="title">
                         <span class="kindness-day">SEGENEROSO</span>
                     </h1>
                     <h2 class="subtitle">Construyamos un mundo más generoso</h2>
                     <p class="description">
-                        Somos una organización sin fines de lucro que busca generar conciencia sobre la solidaridad y el apoyo mutuo.
+                        Somos una organización sin fines de lucro que busca generar conciencia sobre la solidaridad y el
+                        apoyo mutuo.
                     </p>
-                    <div class="d-flex justify-content-start gap-2 center">
-                        <button type="button" class="btn btn-more-info">Donar</button>
-                        <button type="button" class="btn btn-more-info">Apoyar</button>
+                    <div class="d-flex justify-content-start gap-2 center actions-cover">
+                        <button type="button" class="btn btn-more-info" onclick="donar()">Donar</button>
+                        <button type="button" class="btn btn-more-info" onclick="apoyar()">Solicitar apoyo</button>
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="100">
@@ -89,24 +96,24 @@
             <div class="card">
                 <img src="./assets/img/cover.jpg" alt="Donar">
                 <div class="card-content">
-                    <h3>Donar</h3>
+                    <h3 class="card-tittle">Donaciones</h3>
                     <div class="progress-bar">
                         <div class="progress" style="width: 10%;"></div>
                     </div>
-                    <p>Donaciones: 05</p>
-                    <a href="#" class="btn-card" onclick="donar()">SOLICITAR 💚</a>
+                    <p class="card-text">Cantidad: 05</p>
+                    <a href="#" class="btn-card" onclick="donar()">SUMATE</a>
                 </div>
             </div>
 
             <div class="card">
                 <img src="./assets/img/cover.jpg" alt="Apoyar">
                 <div class="card-content">
-                    <h3>Apoyar</h3>
+                    <h3 class="card-tittle">Solicitudes</h3>
                     <div class="progress-bar">
                         <div class="progress" style="width: 10%;"></div>
                     </div>
-                    <p>Solicitudes: 03</p>
-                    <a href="#" class="btn-card" onclick="apoyar()">SOLICITAR 💚</a>
+                    <p class="card-text">Cantidad: 03</p>
+                    <a href="#" class="btn-card" onclick="apoyar()">SUMATE</a>
                 </div>
             </div>
         </div>

@@ -7,6 +7,11 @@
     <title>Landing Page</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 
@@ -37,9 +42,8 @@
                             <a class="nav-link" href="donar.html">Quiero donar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="apoyar.html">Solicitar un apoyo</a>
+                            <a class="nav-link" href="apoyar.html" onclick="donar()">Solicitar un apoyo</a>
                         </li>
-
                     </ul>
 
                     <!-- Action buttons -->
@@ -51,46 +55,132 @@
         </nav>
     </header>
 
-    <!-- Formularios -->
-    <section class="section mt-5">
-        <div class="row justify-content-center">
-            <!-- Formulario 1: Contacto -->
-            <div class="col-lg-5 col-md-6 mb-4">
-                <div class="form-container">
-                    <h3 class="form-title">
-                        <i class="fas fa-envelope text-primary"></i>
-                        Formulario de Contacto
-                    </h3>
-                    <form id="form1">
-                        <div class="mb-3">
-                            <label for="nombre1" class="form-label">Nombre completo *</label>
-                            <input type="text" class="form-control" id="nombre1" name="nombre" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email1" class="form-label">Email *</label>
-                            <input type="email" class="form-control" id="email1" name="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="telefono1" class="form-label">Teléfono</label>
-                            <input type="tel" class="form-control" id="telefono1" name="telefono">
-                        </div>
-                        <div class="mb-3">
-                            <label for="mensaje1" class="form-label">Mensaje *</label>
-                            <textarea class="form-control" id="mensaje1" name="mensaje" rows="4" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-submit w-100">
-                            <span class="submit-text">Enviar Mensaje</span>
-                            <span class="loading">
-                                <i class="fas fa-spinner fa-spin"></i> Enviando...
-                            </span>
-                        </button>
-                    </form>
-                    <div id="result1"></div>
+    <!-- Formulario de Solicitud de Apoyo -->
+    <section class="section form-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <div class="form-container">
+                        <h3 class="form-title text-center mb-4">
+                            <i class="fas fa-hand-holding-heart text-success me-2"></i>
+                            Donación
+                        </h3>
+                        <form id="form1" novalidate>
+                            <div class="row">
+                                <!-- Nombre completo -->
+                                <div class="col-md-6 mb-3">
+                                    <label for="nombre3" class="form-label">
+                                        <i class="fas fa-user me-1"></i>
+                                        Nombre completo *
+                                    </label>
+                                    <input type="text" class="form-control" id="nombre3" name="nombre" required>
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresa tu nombre completo.
+                                    </div>
+                                </div>
+
+                                <!-- Correo electrónico -->
+                                <div class="col-md-6 mb-3">
+                                    <label for="email3" class="form-label">
+                                        <i class="fas fa-envelope me-1"></i>
+                                        Correo electrónico *
+                                    </label>
+                                    <input type="email" class="form-control" id="email3" name="email" required>
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresa un correo electrónico válido.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <!-- Número telefónico -->
+                                <div class="col-md-6 mb-3">
+                                    <label for="telefono3" class="form-label">
+                                        <i class="fas fa-phone me-1"></i>
+                                        Número telefónico *
+                                    </label>
+                                    <input type="tel" class="form-control" id="telefono3" name="telefono"
+                                        pattern="[0-9]{10}" placeholder="10 dígitos" required>
+                                    <div class="invalid-feedback">
+                                        Por favor, ingresa un número telefónico válido (10 dígitos).
+                                    </div>
+                                </div>
+
+                                <!-- Categoría -->
+                                <div class="col-md-6 mb-3">
+                                    <label for="categoria" class="form-label">
+                                        <i class="fas fa-tags me-1"></i>
+                                        Categoría de apoyo *
+                                    </label>
+                                    <select class="form-select" id="categoria" name="categoria" required>
+                                        <option value="">Selecciona una categoría</option>
+                                        <option value="ropa">Ropa</option>
+                                        <option value="medicamento">Medicamento</option>
+                                        <option value="servicios">Servicios</option>
+                                        <option value="consultoria">Consultoría</option>
+                                        <option value="tiempo">Tiempo</option>
+                                        <option value="otros">Otros</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Por favor, selecciona una categoría.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Comentarios -->
+                            <div class="mb-4">
+                                <label for="comentarios" class="form-label">
+                                    <i class="fas fa-comment-alt me-1"></i>
+                                    Descripción detallada de tu solicitud *
+                                </label>
+                                <textarea class="form-control" id="comentarios" name="comentarios" rows="6"
+                                    placeholder="Comparte con nosotros tu deseo de ayudar: qué tipo de apoyo puedes brindar, en qué áreas te sientes más cómodo contribuyendo, y cómo te gustaría ser parte de nuestra comunidad solidaria..."
+                                    required></textarea>
+                                <div class="form-text">
+                                    Mientras más detalles nos proporciones, mejor podremos encontrar las oportunidades
+                                    perfectas para canalizar tu solidaridad. </div>
+                                <div class="invalid-feedback">
+                                    Por favor, describe tu solicitud de apoyo.
+                                </div>
+                            </div>
+
+                            <!-- Términos y condiciones -->
+                            <div class="mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="acepta_terminos3"
+                                        name="acepta_terminos" required>
+                                    <label class="form-check-label" for="acepta_terminos3">
+                                        Acepto que mi información sea compartida con posibles donantes y acepto los
+                                        <a href="#" class="text-primary">términos y condiciones</a> *
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        Debes aceptar los términos y condiciones.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Botón de envío -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-submit btn-lg px-5">
+                                    <span class="submit-text">
+                                        <i class="fas fa-paper-plane me-2"></i>
+                                        Enviar Solicitud
+                                    </span>
+                                    <span class="loading" style="display: none;">
+                                        <i class="fas fa-spinner fa-spin me-2"></i>
+                                        Procesando...
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Resultado -->
+                        <div id="result3" class="mt-4"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- FOOTER -->
     <footer>
         <div class="logo">SEGENEROSO</div>
