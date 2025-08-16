@@ -61,73 +61,192 @@
 
   .navbar {
       padding: 1rem 0;
-      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
-  @media (max-width: 991.98px) {
-      .navbar-nav {
-          text-align: center;
-          margin-top: 1rem;
-      }
-
-      .navbar-nav .nav-item {
-          margin: 0.25rem 0;
-      }
-
-      .navbar-buttons {
-          text-align: center;
-          margin-top: 1rem;
-      }
-
-      .btn-login {
-          margin-right: 1rem;
-      }
-  }
-
-  .actions {
+  /*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+  section#hero {
+      background: white;
+      min-height: 95vh;
+      position: relative;
+      overflow: hidden;
+      padding-top: 74px;
       display: flex;
-      gap: 10px;
-  }
-
-  .btn {
-      padding: 8px 15px;
-      border-radius: 20px;
-      cursor: pointer;
-  }
-
-  .btn-dark {
-      background: #222;
-      color: #fff;
-  }
-
-  .btn-light {
-      background: #fff;
-      color: #222;
-  }
-
-  .btn-green {
-      background: #8BC34A;
-      color: #fff;
-      border: none;
-  }
-
-  /* HERO */
-  .hero {
-      display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 60px 80px;
-      gap: 40px;
   }
 
-  .hero-text h1 {
-      font-size: 32px;
-      margin-bottom: 20px;
+  /* Círculos decorativos */
+  .hero::before {
+      content: '';
+      position: absolute;
+      top: 15%;
+      left: 15%;
+      width: 150px;
+      height: 150px;
+      background: rgba(186, 242, 178, 0.4);
+      border-radius: 50%;
+      z-index: 1;
   }
 
-  .hero-text .btn {
-      margin-right: 10px;
+  .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 20%;
+      left: 5%;
+      width: 100px;
+      height: 100px;
+      background: rgba(178, 242, 180, 0.3);
+      border-radius: 50%;
+      z-index: 1;
   }
+
+  /* Círculos adicionales */
+  .decorative-circle {
+      position: absolute;
+      border-radius: 50%;
+      z-index: 1;
+  }
+
+  .circle-1 {
+      top: 25%;
+      right: 20%;
+      width: 80px;
+      height: 80px;
+      background: rgba(0, 212, 60, 0.3);
+  }
+
+  .circle-2 {
+      top: 60%;
+      right: 10%;
+      width: 60px;
+      height: 60px;
+      background: rgba(0, 212, 85, 0.2);
+  }
+
+  .circle-3 {
+      top: 10%;
+      right: 35%;
+      width: 40px;
+      height: 40px;
+      background: rgba(0, 212, 78, 0.4);
+  }
+
+  /* Puntos pequeños */
+  .small-dots {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #00d45c;
+      border-radius: 50%;
+      z-index: 1;
+  }
+
+  .dot-1 {
+      top: 30%;
+      right: 25%;
+  }
+
+  .dot-2 {
+      top: 50%;
+      right: 15%;
+  }
+
+  .dot-3 {
+      top: 70%;
+      right: 30%;
+  }
+
+  .dot-4 {
+      top: 20%;
+      right: 40%;
+  }
+
+  .hero-content {
+      position: relative;
+      z-index: 2;
+  }
+
+  .hero h1 {
+      font-size: 4.5rem;
+      font-weight: bold;
+      background: #4CAF50;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+  }
+
+  .hero h1 .world {
+      color: #e91e63;
+      font-style: italic;
+      font-size: 3.5rem;
+      display: block;
+  }
+
+  .hero h1 .kindness-day {
+      color: #15c031;
+      font-weight: 900;
+      font-size: 5rem;
+  }
+
+  .hero .subtitle {
+      color: #2c3e50;
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+  }
+
+  .hero .description {
+      color: #546e7a;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      max-width: 450px;
+  }
+
+  .btn-more-info {
+      background: linear-gradient(45deg, #2c3e50, #2c3e50);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+  }
+
+  .btn-more-info:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(30, 233, 101, 0.4);
+      background: #4CAF50;
+      color: white;
+  }
+
+  @media (max-width: 768px) {
+      .hero h1 {
+          font-size: 3rem;
+      }
+
+      .hero h1 .world {
+          font-size: 2.5rem;
+      }
+
+      .hero h1 .kindness-day {
+          font-size: 3.5rem;
+      }
+
+      .hero .subtitle {
+          font-size: 1.4rem;
+      }
+
+      .hero .description {
+          font-size: 1rem;
+      }
+  }
+
 
   /* CARDS */
   .section {

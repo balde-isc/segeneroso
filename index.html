@@ -13,57 +13,77 @@
 <body>
 
     <header>
-       <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-        <div class="container">
-            <!-- Logo/Brand -->
-            <a class="navbar-brand" href="index.html">
-                SEGENEROSO
-            </a>
-            
-            <!-- Mobile toggle button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <!-- Navbar content -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- Navigation links -->
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="donar.html">Quiero donar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="apoyar.html">Solicitar un apoyo</a>
-                    </li>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+            <div class="container">
+                <!-- Logo/Brand -->
+                <a class="navbar-brand" href="index.html">
+                    SEGENEROSO
+                </a>
 
-                </ul>
-                
-                <!-- Action buttons -->
-                <div class="navbar-buttons">
-                    <button class="btn btn-donate">Donar</button>      
+                <!-- Mobile toggle button -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navbar content -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <!-- Navigation links -->
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="donar.html">Quiero donar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="apoyar.html">Solicitar un apoyo</a>
+                        </li>
+
+                    </ul>
+
+                    <!-- Action buttons -->
+                    <div class="navbar-buttons">
+                        <button class="btn btn-donate">Donar</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+ <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <!-- Elementos decorativos -->
+        <div class="decorative-circle circle-1"></div>
+        <div class="decorative-circle circle-2"></div>
+        <div class="decorative-circle circle-3"></div>
+        <div class="small-dots dot-1"></div>
+        <div class="small-dots dot-2"></div>
+        <div class="small-dots dot-3"></div>
+        <div class="small-dots dot-4"></div>
+        
+        <div class="container">
+            <div class="row gy-4 align-items-center">
+                <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center hero-content" data-aos="fade-up">
+                    <h1>
+                        <span class="kindness-day">SEGENEROSO</span>
+                    </h1>
+                    <h2 class="subtitle">Construyamos un mundo más generoso</h2>
+                    <p class="description">
+                        Somos una organización sin fines de lucro que busca generar conciencia sobre la solidaridad y el apoyo mutuo.
+                    </p>
+                    <div class="d-flex justify-content-start gap-2 center">
+                        <button type="button" class="btn btn-more-info">Donar</button>
+                        <button type="button" class="btn btn-more-info">Apoyar</button>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="100">
+                    <img src="./assets/img/cover.svg" alt="" srcset="">
                 </div>
             </div>
         </div>
-    </nav>
-    </header>
-
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-text">
-            <h1>Texto para generar conciencia</h1>
-            <button class="btn btn-dark" onclick="solicitarApoyo()">Solicitar apoyo</button>
-            <button class="btn btn-light" onclick="donarApoyar()">Donar y apoyar</button>
-        </div>
-        <div class="hero-img">
-            <img src="./assets/img/cover.jpg" alt="Imagen solidaria" style="border-radius:20px;">
-        </div>
-    </section>
-
+    </section><!-- /Hero Section -->
     <!-- CARDS -->
-    <section class="section">
+    <section class="section pt-0">
         <h2>Como podemos sumar</h2>
         <div class="cards">
             <div class="card">
@@ -105,7 +125,7 @@
             <a href="#">Ayuda</a>
             <a href="#">Privacidad</a>
         </div>
-       
+
         <p>© 2025 SEGENEROSO. All rights reserved.</p>
     </footer>
 
