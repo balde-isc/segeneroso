@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception("Error preparando consulta: " . $conn->error);
         }
 
-        $stmt->bind_param("ssss", $nombre, $email, $telefono, $categoria, $comentarios);
+        $stmt->bind_param("sssss", $nombre, $email, $telefono, $categoria, $comentarios);
 
         if ($stmt->execute()) {
             echo json_encode(['success' => true, 'message' => '¡Mensaje enviado correctamente! Te contactaremos pronto.']);
