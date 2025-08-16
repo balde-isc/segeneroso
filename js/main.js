@@ -40,6 +40,8 @@ $(document).ready(function () {
                 dataType: 'json',
                 success: function (response) {
                     console.log(response)
+                                        alert("OK")
+
                     if (response.success) {
                         Swal.fire({
                             title: "Good job!",
